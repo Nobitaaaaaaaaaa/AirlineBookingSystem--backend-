@@ -24,32 +24,31 @@ Lets take a look inside the `src` folder
 
 -`utils` -> contains   helper methods, error calsses etc
 
+
+### Setup the Project
+-Download this template from github and open it in your facourite text editr
+-Go inside the folder path and execute the following command;
+
+In th eroot directory create a `.env` file an ass the follwoing env variables 
+```
+PORT =port number of your own choice
+
+```
+
 -Inside the `src/config` folder create a f ile named as `config.json` and write the followinf code: 
-'''
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
-'''
+
+-go inside the `src` folder and execute the following command:
+    ```
+    npx sequalize init
+    ```
+
+-By executing the above command you will get migrations and seeders folder along with a config.json insider the confg folder
 
 - If you are setting up your development envionment, then write the username of your db, password of the db and in the dialect mention whatever db you are using for ex: mySql, mariadb
 -If you are setting up test or prod enviornment, make sure you also replace the host with the hosted url.
+
+-TO run the server execute 
+```
+npm run dev
+
+```
