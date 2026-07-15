@@ -9,8 +9,12 @@ async function createAirplane(data){
         return airplane;
     }
     catch(error){
-        if(error.name == 'TypeError'){
-            throw newAppError('Cannot create a new Airplane object', StatusCodes.BAD_REQUEST);
+        if(error.name == 'SequelizeValidationError'){
+            let explanation = [];
+            error.errors.forEach((err) => {
+                explanation.push(err.message);
+            });
+            throw new AppError('Cannot create a new Airplane object', StatusCodes.BAD_REQUEST, explanation);
         }
         throw error;
     }
