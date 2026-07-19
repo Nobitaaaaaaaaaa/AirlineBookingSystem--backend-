@@ -26,6 +26,10 @@ async function createAirplane(req,res){
         .json({ErrorResponse});
     }
 }
+
+/*GET:/airplane
+req-body {}
+*/
 async function getAirplanes(req,res){
     try{
         const airplanes = await AirplaneService.getAirplanes();
@@ -60,8 +64,32 @@ async function getAirplane(req,res){
         .json({ErrorResponse});
     }
 }
+
+
+/*DELETE:/airplane
+req-body {}
+*/
+async function destroyAirplane(req,res){
+    try{
+        const airplane = await AirplaneService.destroyAirplane(req.params.id);
+        SuccessResponse.data = airplane;
+        return res
+        .status(StatusCodes.OK)
+        .json({SuccessResponse});
+    }catch(error){
+        ErrorResponse.message = error;
+        return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ErrorResponse});
+    }
+}
+
+
+
+
 module.exports = {
     createAirplane,
     getAirplanes,
-    getAirplane
+    getAirplane,
+    destroyAirplane
 }

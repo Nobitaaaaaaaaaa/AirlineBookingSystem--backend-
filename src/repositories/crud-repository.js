@@ -25,6 +25,9 @@ class CrudRepository{
                     id:data
                 }
             });
+            if(!response){
+                throw {error: "Not found", statusCode: StatusCodes.NOT_FOUND};
+            }
             return response;
        
     }

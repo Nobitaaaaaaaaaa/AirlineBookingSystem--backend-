@@ -41,11 +41,28 @@ async function getAirplane(id){
         } 
         throw new AppError('Cannot retrieve data for Airplane object', StatusCodes.BAD_REQUEST, explanation);
     }
+
+
 } 
 
+
+async function detroyAirplane(id){
+    try{
+        const airplane = await airplaneRepository.destroy(id);
+        return airplane;
+    }
+    catch(error){
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new AppError('The airplane you requested is not available', StatusCodes.NOT_FOUND, ['The airplane you requested is not available']);
+        }
+        throw new AppError('Cannot delete data for Airplane object', StatusCodes.BAD_REQUEST, explanation);
+    }
+
+}
     
 module.exports = {
     createAirplane,
     getAirplanes,
-    getAirplane
+    getAirplane,
+    destroyAirplane
 }
