@@ -20,6 +20,32 @@ async function createAirplane(data){
     }
 }
 
+async function getAirplanes(){
+    try{
+        const airplanes = await airplaneRepository.getAll();
+        return airplanes;
+    }
+    catch(error){
+        throw new AppError('Cannot retrieve data for all Airplane objects', StatusCodes.BAD_REQUEST, explanation);
+    }
+}
+
+async function getAirplane(id){
+    try{
+        const airplane = await airplaneRepository.get(id);
+        return airplane;
+    }
+    catch(error){
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new AppError('The airplane you requested is not available', StatusCodes.NOT_FOUND, ['The airplane you requested is not available']);
+        } 
+        throw new AppError('Cannot retrieve data for Airplane object', StatusCodes.BAD_REQUEST, explanation);
+    }
+} 
+
+    
 module.exports = {
-    createAirplane
+    createAirplane,
+    getAirplanes,
+    getAirplane
 }
