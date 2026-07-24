@@ -101,7 +101,7 @@ async function destroyFlight(id){
             
         }
         try{
-            const flights = await flightRepository.getAllFlights(customerFilter);
+            const flights = await flightRepository.getAllFlights(customerFilter, sortFilter);
             return flights;
 
         }catch(error){
